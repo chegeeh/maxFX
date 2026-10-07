@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>COT Board: Gold &amp; Silver</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f3f1ea;--bg2:#e9e6dc;--card:#fff;--tx:#1b1a17;--mut:#6d6a60;--bd:#e0ddd2;--up:#157f4d;--dn:#c0352b;--wr:#a86f00;--gold:#b8921e;--silver:#6f7c8b}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e0f12;--bg2:#15171c;--card:#171a20;--tx:#eef0f3;--mut:#8b919c;--bd:#262a33;--up:#3ddc97;--dn:#ff6b61;--wr:#f2b84b;--gold:#e6c35c;--silver:#b7c3d1}}
+:root[data-theme="dark"]{--bg:#0e0f12;--bg2:#15171c;--card:#171a20;--tx:#eef0f3;--mut:#8b919c;--bd:#262a33;--up:#3ddc97;--dn:#ff6b61;--wr:#f2b84b;--gold:#e6c35c;--silver:#b7c3d1}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:radial-gradient(1200px 500px at 15% -10%,color-mix(in srgb,var(--gold) 14%,transparent),transparent),radial-gradient(900px 500px at 100% 0,color-mix(in srgb,var(--silver) 12%,transparent),transparent),var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100%}
+main{max-width:1080px;margin:0 auto;padding:18px 16px 40px}
+.top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+h1{font-size:26px;margin:0;letter-spacing:-.02em}h1 span{color:var(--gold)}
+.pill{font-size:12px;color:var(--mut);border:1px solid var(--bd);background:var(--card);padding:4px 12px;border-radius:99px}
+.pill i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--up);margin-right:6px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:18px;box-shadow:0 8px 30px -18px rgba(0,0,0,.5)}
+.hero{border-top:3px solid var(--m)}
+.hd{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.hd h2{margin:0;font-size:19px;color:var(--m)}
+.badge{padding:4px 12px;border-radius:99px;font-weight:700;font-size:12px;background:color-mix(in srgb,currentColor 14%,transparent)}
+.up{color:var(--up)}.dn{color:var(--dn)}.wr{color:var(--wr)}
+.gwrap{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;margin:8px 0}
+@media(max-width:420px){.gwrap{grid-template-columns:1fr}}
+.gauge{text-align:center}.gauge b{display:block;font-size:12px;color:var(--mut);margin-top:-6px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.s{background:var(--bg2);border-radius:12px;padding:8px 12px}.s b{font-size:19px;display:block;line-height:1.2}.s span{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
+h3{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin:16px 0 8px}
+svg{width:100%;height:auto;display:block}
+.act{background:color-mix(in srgb,var(--m) 9%,transparent);border:1px solid color-mix(in srgb,var(--m) 30%,transparent);border-radius:12px;padding:10px 14px}
+.act ul,.why{margin:0;padding-left:18px}.act li,.why li{margin:4px 0}.why{font-size:13px;color:var(--mut)}
+.row{display:grid;grid-template-columns:78px 1fr 70px;align-items:center;gap:8px;font-size:12px;margin:5px 0}
+.track{position:relative;height:14px;background:var(--bg2);border-radius:7px}.track:after{content:"";position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--mut);opacity:.6}
+.bar{position:absolute;top:0;bottom:0;border-radius:7px}
+.row em{font-style:normal;text-align:right;font-weight:600}
+.tw{overflow-x:auto}table{border-collapse:separate;border-spacing:3px;width:100%;font-size:12px;white-space:nowrap}
+th{color:var(--mut);font-weight:600;padding:4px 6px;text-align:center}td{padding:6px 8px;text-align:center;border-radius:6px;background:var(--bg2)}
+td:first-child,th:first-child{text-align:left}
+.cmp{margin-top:16px}.full{grid-column:1/-1}
+details{margin-top:16px}summary{cursor:pointer;font-weight:600}
+textarea{width:100%;min-height:90px;margin-top:10px;background:var(--bg2);color:var(--tx);border:1px solid var(--bd);border-radius:10px;padding:8px;font:12px monospace}
+button{background:var(--gold);color:#111;border:0;border-radius:10px;padding:8px 16px;font-weight:700;cursor:pointer;margin:8px 8px 0 0}button.g{background:transparent;color:var(--tx);border:1px solid var(--bd)}
+.note{font-size:12px;color:var(--mut)}input{width:92px;background:var(--bg2);color:var(--tx);border:1px solid var(--bd);border-radius:6px;padding:5px 7px;font:12px monospace}td input{text-align:right}
+</style>
+</head>
+<body>
+<main>
+<div class="top"><div><h1>COT <span>Board</span></h1><div class="note">Gold, Silver &amp; US Dollar · COMEX/ICE futures · CFTC disaggregated · managed-money positioning</div></div><div class="pill" id="asof"></div></div>
+<div class="cols" id="cols"></div>
+<div class="cols" style="margin-top:16px" id="cmp"></div>
+<div class="cols" style="margin-top:16px" id="usd"></div>
+<div style="margin-top:16px" id="px"></div>
+<details class="card" style="margin-top:16px"><summary>Add a new week</summary>
+<p class="note">Each Friday paste (1) the CFTC disaggregated report (GOLD/SILVER) and (2) the ICE US legacy <b>futures-only</b> report (USD INDEX). Either or both; they are parsed and stored in this browser.</p>
+<textarea id="paste" placeholder="Paste report text here..."></textarea>
+<button id="add">Parse &amp; add</button><button class="g" id="reset">Reset to built-in data</button><p id="msg" class="note"></p></details>
+<p class="note" style="margin-top:16px">Positioning-derived bias, not financial advice. COT is a Tuesday snapshot released Friday, so it lags price. Confirm with your chart, set a stop before entry, and remember gold and silver are highly correlated: holding both is closer to one bet than two.</p>
+</main>
+<script>
+const K=['d','oi','mmL','mmS','swL','swS','pmL','pmS','orL','orS','nrL','nrS'];
+const mk=a=>Object.fromEntries(K.map((k,i)=>[k,a[i]]));
+const BASE={
+gold:[['2026-09-15',409899,142394,9278,14690,248350,16396,44457,115665,18443,47460,16077],
+['2026-09-22',412800,135699,8310,14626,250752,17719,44496,118283,19819,52437,15387],
+['2026-09-29',406456,131711,11393,14835,244539,18200,39463,118025,19711,48784,16449]].map(mk),
+silver:[['2026-09-15',103745,20205,7081,22736,48082,4712,22066,15190,2988,25086,7712],
+['2026-09-22',106474,19303,5994,22745,48987,4047,22559,15398,3263,27730,8420],
+['2026-09-29',107047,16886,9272,23671,47169,5032,21544,16596,2127,27135,9208]].map(mk)};
+const NAME={gold:'Gold (GC)',silver:'Silver (SI)'},COL={gold:'var(--gold)',silver:'var(--silver)'};
+const SK='cot_user_weeks_v1';
+const f=n=>Math.round(n).toLocaleString('en-US'),sg=n=>(n>0?'+':'')+f(n),pc=n=>(n>0?'+':'')+n.toFixed(1)+'%';
+function userData(){try{return JSON.parse(localStorage.getItem(SK))||{gold:[],silver:[]}}catch(e){return{gold:[],silver:[]}}}
+function saveUser(u){try{localStorage.setItem(SK,JSON.stringify(u))}catch(e){}}
+function data(){const u=userData(),o={};for(const m of['gold','silver']){const map={};[...BASE[m],...(u[m]||[])].forEach(w=>map[w.d]=w);o[m]=Object.values(map).sort((a,b)=>a.d<b.d?-1:1)}return o}
+function parse(t){const out={gold:[],silver:[],usd:[]};
+for(const seg of t.split(/\n(?=[^\n]*Code-\w+)/)){const head=seg.split('\n')[0];
+if(/^\s*USD INDEX/.test(head)){const dd=seg.match(/POSITIONS AS OF\s+(\d\d)\/(\d\d)\/(\d\d)/),oi=seg.match(/OPEN INTEREST:\s+([\d,]+)/),cm=seg.match(/COMMITMENTS\s*\n\s*([\d,\s]+)/);
+if(dd&&oi&&cm){const n=cm[1].replace(/,/g,'').trim().split(/\s+/).map(Number);if(n.length>=5&&!n.some(isNaN))out.usd.push({d:'20'+dd[3]+'-'+dd[1]+'-'+dd[2],oi:+oi[1].replace(/,/g,''),ncL:n[0],ncS:n[1],cL:n[3],cS:n[4]})}continue}
+const m=/^\s*GOLD - COMMODITY/.test(head)?'gold':/^\s*SILVER - COMMODITY/.test(head)?'silver':null;if(!m)continue;
+const dm=seg.match(/Futures Only,\s+([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})/),row=seg.match(/^All\s*:\s*([\d,]+):(.*)$/m);if(!dm||!row)continue;
+const dt=new Date(dm[1]+' '+dm[2]+', '+dm[3]+' 12:00:00 UTC');if(isNaN(dt))continue;
+const n=(row[1]+' '+row[2]).replace(/[:,]/g,' ').trim().split(/\s+/).map(Number);if(n.length<14||n.some(isNaN))continue;
+out[m].push({d:dt.toISOString().slice(0,10),oi:n[0],pmL:n[1],pmS:n[2],swL:n[3],swS:n[4],mmL:n[6],mmS:n[7],orL:n[9],orS:n[10],nrL:n[12],nrS:n[13]})}
+return out}
+function analyse(ws){
+const net=ws.map(w=>w.mmL-w.mmS),L=ws.length-1,first=net[0],last=net[L],tot=last-first;
+const pct=first?tot/Math.abs(first)*100:0,wk=L>0&&net[L-1]?(last-net[L-1])/Math.abs(net[L-1])*100:0;
+const oi0=ws[0].oi,oi1=ws[L].oi,ratio=ws[L].mmS?ws[L].mmL/ws[L].mmS:99,netOI=last/oi1*100;
+let s=0;const why=[];
+if(pct<-15){s-=2;why.push(`Managed-money net fell ${pct.toFixed(1)}% over ${L} weeks (${f(first)} to ${f(last)}). Persistent de-risking.`)}
+else if(pct<-3){s-=1;why.push(`Managed-money net eased ${pct.toFixed(1)}% over ${L} weeks (${f(first)} to ${f(last)}).`)}
+else if(pct>15){s+=2;why.push(`Managed-money net rose ${pct.toFixed(1)}% over ${L} weeks (${f(first)} to ${f(last)}). Funds are building.`)}
+else if(pct>3){s+=1;why.push(`Managed-money net rose ${pct.toFixed(1)}% over ${L} weeks.`)}
+else why.push(`Managed-money net is flat over ${L} weeks (${pc(pct)}).`);
+if(wk<-10){s-=1;why.push(`Latest week was a sharp cut (${pc(wk)}).`)}else if(wk>10){s+=1;why.push(`Latest week was a strong add (${pc(wk)}).`)}
+if(last<first&&oi1>oi0){s-=1;why.push('Open interest rose while net length fell: new shorts are being opened, not just longs closed.')}
+else if(last<first&&oi1<oi0)why.push('Open interest fell with net length: mostly long liquidation, weaker evidence than fresh shorting.');
+const dm=ws[L].mmS-ws[0].mmS;if(dm>0)why.push(`Managed-money shorts are up ${f(dm)} contracts since the first week.`);
+const lab=s>=2?['Bullish positioning','up']:s===1?['Mildly bullish','up']:s===0?['Neutral','wr']:s===-1?['Fading','wr']:['Bearish positioning','dn'];
+return{net,first,last,tot,pct,wk,ratio,netOI,s,why,lab,oi1,oi0}}
+function actions(a){const A=[],s=a.s;
+if(s<=-2)A.push('<b>Defensive / sell rallies.</b> Do not add longs into bounces while funds keep cutting.','If long, reduce size or tighten stops. Consider shorts only after price confirms (lower high, support break).','<b>Flips if:</b> managed-money net rises two weeks in a row, or price reclaims its latest swing high.');
+else if(s===-1)A.push('<b>Hold, do not add.</b> Keep existing longs with defined stops.','Next report decides: another cut turns this bearish, a rebuild returns it to neutral.');
+else if(s===0)A.push('<b>No positioning edge.</b> Trade your chart setups at normal size.');
+else if(s===1)A.push('<b>Buy dips.</b> Fund buying is building but not strong yet. Enter on pullbacks with a defined stop.');
+else A.push('<b>Trend-follow longs.</b> Add on pullbacks and trail stops.','<b>Flips if:</b> two consecutive weekly cuts in managed-money net.');
+if(a.last>0&&a.ratio>=8)A.push(`<b>Crowded long (${a.ratio.toFixed(1)}:1).</b> A price break could force a big unwind. Keep size smaller.`);
+else if(a.last>0&&a.ratio<3)A.push(`<b>Thin net long (${a.ratio.toFixed(1)}:1).</b> Less forced-selling risk, and a short-covering bounce is possible if price turns.`);
+if(a.last<0)A.push('<b>Funds are net short.</b> Squeeze risk if price rallies.');
+return A}
+function gauge(s){const c=Math.max(-4,Math.min(4,s)),ang=-90+(c+4)/8*180,col=s>=1?'var(--up)':s<=-2?'var(--dn)':'var(--wr)';
+return`<svg viewBox="0 0 200 118" role="img" aria-label="Signal gauge"><defs><linearGradient id="gg" x1="0" x2="1"><stop offset="0" stop-color="var(--dn)"/><stop offset=".5" stop-color="var(--wr)"/><stop offset="1" stop-color="var(--up)"/></linearGradient></defs><path d="M20 100A80 80 0 0 1 180 100" fill="none" stroke="url(#gg)" stroke-width="16" stroke-linecap="round" opacity=".9"/><g transform="rotate(${ang} 100 100)"><line x1="100" y1="100" x2="100" y2="34" stroke="${col}" stroke-width="4" stroke-linecap="round"/></g><circle cx="100" cy="100" r="9" fill="${col}"/><text x="14" y="116" font-size="10" fill="var(--mut)">Bearish</text><text x="186" y="116" font-size="10" fill="var(--mut)" text-anchor="end">Bullish</text></svg>`}
+function spark(ws,net,id){const W=360,H=130,p=30,mn=Math.min(...net),mx=Math.max(...net),r=mx-mn||1;
+const X=i=>p+i*(W-2*p)/Math.max(1,net.length-1),Y=v=>H-26-(v-mn)/r*(H-62);
+const pts=net.map((v,i)=>X(i)+','+Y(v)).join(' ');
+return`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Managed money net by week"><defs><linearGradient id="a${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--m)" stop-opacity=".45"/><stop offset="1" stop-color="var(--m)" stop-opacity="0"/></linearGradient></defs><polygon points="${X(0)},${H-26} ${pts} ${X(net.length-1)},${H-26}" fill="url(#a${id})"/><polyline points="${pts}" fill="none" stroke="var(--m)" stroke-width="3" stroke-linejoin="round"/>`+
+net.map((v,i)=>`<circle cx="${X(i)}" cy="${Y(v)}" r="4.5" fill="var(--card)" stroke="var(--m)" stroke-width="2.5"/><text x="${X(i)}" y="${Y(v)-10}" text-anchor="middle" font-size="11" font-weight="600" fill="var(--tx)">${f(v)}</text><text x="${X(i)}" y="${H-8}" text-anchor="middle" font-size="10" fill="var(--mut)">${ws[i].d.slice(5)}</text>`).join('')+`</svg>`}
+function groups(w){const g=[['Managed money',w.mmL-w.mmS],['Other reportable',w.orL-w.orS],['Retail',w.nrL-w.nrS],['Producers',w.pmL-w.pmS],['Swap dealers',w.swL-w.swS]],mx=Math.max(...g.map(x=>Math.abs(x[1])))||1;
+return g.map(([n,v])=>{const wd=Math.abs(v)/mx*50,c=v>=0?'var(--up)':'var(--dn)';return`<div class="row"><span>${n}</span><div class="track"><div class="bar" style="background:${c};width:${wd}%;${v>=0?'left:50%':'right:50%'}"></div></div><em class="${v>=0?'up':'dn'}">${sg(v)}</em></div>`}).join('')}
+function heat(ws){const G=[['MM','mmL','mmS'],['Other','orL','orS'],['Retail','nrL','nrS'],['Prod.','pmL','pmS'],['Swaps','swL','swS']];
+const D=ws.slice(1).map((w,i)=>G.map(g=>(w[g[1]]-w[g[2]])-(ws[i][g[1]]-ws[i][g[2]])));const mx=Math.max(1,...D.flat().map(Math.abs));
+return`<div class="tw"><table><tr><th>Week</th>${G.map(g=>`<th>${g[0]}</th>`).join('')}</tr>`+D.map((r,i)=>`<tr><td>${ws[i+1].d.slice(5)}</td>${r.map(v=>`<td style="background:color-mix(in srgb,${v>=0?'var(--up)':'var(--dn)'} ${Math.round(Math.abs(v)/mx*55)+6}%,var(--bg2))">${sg(v)}</td>`).join('')}</tr>`).join('')+`</table></div>`}
+function card(m,ws,id){const a=analyse(ws),L=ws.length-1,w=ws[L],pv=pverdict(m,ws,a);
+const low=ws.length<3?`<p class="wr note"><b>Only ${ws.length} week(s) loaded.</b> Add reports for a reliable trend.</p>`:'';
+return`<section class="card hero" style="--m:${COL[m]}"><div class="hd"><h2>${NAME[m]}</h2><span class="badge ${a.lab[1]}">${a.lab[0]}</span></div>${low}
+<div class="gwrap"><div class="gauge">${gauge(a.s)}<b>Signal score ${a.s>0?'+':''}${a.s}</b></div>
+<div class="stats"><div class="s"><b>${sg(a.last)}</b><span>MM net</span></div><div class="s"><b class="${a.tot>=0?'up':'dn'}">${pc(a.pct)}</b><span>${L}-week change</span></div>
+<div class="s"><b class="${a.wk>=0?'up':'dn'}">${pc(a.wk)}</b><span>Last week</span></div><div class="s"><b>${a.ratio.toFixed(1)}:1</b><span>Longs per short</span></div></div></div>
+<h3>Managed money net, by week</h3>${spark(ws,a.net,id)}
+<h3>What to do</h3><div class="act"><ul>${actions(a).map(x=>`<li>${x}</li>`).join('')}</ul></div>
+${pv}<h3>Why</h3><ul class="why">${a.why.map(x=>`<li>${x}</li>`).join('')}</ul>
+<h3>Who holds what, ${w.d} (net)</h3>${groups(w)}
+<h3>Weekly change in net, by group</h3>${heat(ws)}
+<p class="note">Swap dealers mostly mirror client length, so their net short is hedging, not a bearish view. Open interest ${f(a.oi1)} (${a.oi1>=a.oi0?'up':'down'} over the period).</p></section>`}
+function cmp(g,s){const ag=analyse(g),as=analyse(s),mx=Math.max(Math.abs(ag.pct),Math.abs(as.pct),Math.abs(ag.wk),Math.abs(as.wk),1);
+const bar=(n,v,c)=>`<div class="row"><span>${n}</span><div class="track"><div class="bar" style="background:${c};width:${Math.abs(v)/mx*50}%;${v>=0?'left:50%':'right:50%'}"></div></div><em class="${v>=0?'up':'dn'}">${pc(v)}</em></div>`;
+let t;if(as.s<=ag.s-2)t='Funds are cutting silver much harder than gold. <b>Ratio-up bias (gold outperforming silver).</b> If you hold both, silver is the first to trim. Confirm on the XAU/XAG chart.';
+else if(ag.s<=as.s-2)t='Funds are cutting gold harder than silver. <b>Ratio-down bias (silver outperforming).</b> Confirm on the XAU/XAG chart.';
+else t='Gold and silver positioning are moving in a similar direction. No relative-value edge; treat both as one correlated bet.';
+return`<section class="card full"><div class="hd"><h2>Gold vs Silver</h2></div><h3>Managed-money net change</h3>${bar('Gold, period',ag.pct,'var(--gold)')}${bar('Silver, period',as.pct,'var(--silver)')}${bar('Gold, last wk',ag.wk,'var(--gold)')}${bar('Silver, last wk',as.wk,'var(--silver)')}<div class="act cmp" style="--m:var(--gold)">${t}</div></section>`}
+
+const UB=[['2026-09-15',43744,25971,15378,13186,25420],['2026-09-22',46328,27768,17438,13356,25523],['2026-09-29',48342,29742,17861,13524,27398]].map(a=>({d:a[0],oi:a[1],ncL:a[2],ncS:a[3],cL:a[4],cS:a[5]}));
+const UK='cot_usd_v1',PK='cot_prices_v1';
+function uData(){let u=[];try{u=JSON.parse(localStorage.getItem(UK))||[]}catch(e){}const m={};[...UB,...u].forEach(w=>m[w.d]=w);return Object.values(m).sort((a,b)=>a.d<b.d?-1:1)}
+function getP(){try{return JSON.parse(localStorage.getItem(PK))||{}}catch(e){return{}}}
+function pser(ws,k){const P=getP();return ws.map(w=>[w.d,parseFloat((P[w.d]||{})[k])]).filter(x=>x[1]>0)}
+function pverdict(m,ws,a){const p=pser(ws,m==='gold'?'xau':'xag');if(p.length<2)return'';const dp=(p[p.length-1][1]/p[0][1]-1)*100,dn=a.pct<-3,up=a.pct>3;let t;
+if(dn&&dp<0)t=`<b>Confirmed weakness.</b> Price is ${pc(dp)} while funds cut net length: positioning and price agree.`;
+else if(dn)t=`<b>Divergence.</b> Price is ${pc(dp)} but funds are cutting. Either funds lag a healthy trend or distribution is under way. Do not add until price confirms.`;
+else if(up&&dp<0)t=`<b>Dip being bought.</b> Price is ${pc(dp)} while funds add. Constructive, but wait for price to turn.`;
+else if(up)t=`<b>Confirmed strength.</b> Price is ${pc(dp)} with funds adding.`;
+else t=`Price is ${pc(dp)} with fund positioning roughly flat: no confirmation or divergence.`;
+return`<h3>Price check (${p[0][0].slice(5)} to ${p[p.length-1][0].slice(5)})</h3><div class="act">${t}</div>`}
+function analyseU(ws){const L=ws.length-1,sp=ws.map(w=>w.ncL-w.ncS),pp=ws.map((w,i)=>sp[i]/w.oi*100),tot=pp[L]-pp[0],wk=L?pp[L]-pp[L-1]:0,cn=ws.map(w=>w.cL-w.cS);
+let s=(tot>=6?2:tot>=2?1:tot<=-6?-2:tot<=-2?-1:0)+(wk>=2?1:wk<=-2?-1:0);s=Math.max(-3,Math.min(3,s));
+const why=[`Speculator (non-commercial) net long is ${f(sp[L])} contracts, ${pp[L].toFixed(1)}% of open interest, vs ${pp[0].toFixed(1)}% ${L} weeks ago (${tot>=0?'+':''}${tot.toFixed(1)} pts).`,`Latest week: ${wk>=0?'+':''}${wk.toFixed(1)} pts of open interest, net ${sg(sp[L]-sp[L-1])} contracts.`];
+if(ws[L].oi>ws[0].oi*1.1)why.push('Open interest is rebuilding after the September contract roll, so net as a % of open interest is more reliable than raw contract counts.');
+why.push(`Commercials (hedgers) are net short ${f(-cn[L])}, the mirror of speculative length.`);
+const lab=s>=2?['Dollar bullish','up']:s===1?['Mildly dollar-bullish','up']:s===0?['Neutral','wr']:s===-1?['Mildly dollar-bearish','dn']:['Dollar bearish','dn'];
+return{sp,pp,cn,tot,wk,s,why,lab,L}}
+function cardU(ws){const a=analyseU(ws),P=pser(ws,'dxy');let pv='';
+if(P.length>1){const dp=(P[P.length-1][1]/P[0][1]-1)*100;pv=`<h3>Price check (DXY)</h3><div class="act">${dp>0&&a.tot<=-1?'<b>Divergence.</b> DXY is up but speculators are trimming dollar length.':dp<0&&a.tot>=1?'<b>Divergence.</b> DXY is down but speculators are adding dollar length.':'DXY moved '+pc(dp)+' over the period; positioning does not contradict it.'}</div>`}
+const act=a.s>=2?['<b>Dollar tailwind building.</b> A headwind for gold and silver: do not add metal longs unless price holds up against it.']:a.s===1?['<b>Mild dollar-positive lean.</b> Modest headwind for metals. Watch whether DXY price confirms.']:a.s===0?['<b>No dollar edge.</b> Dollar positioning is not a factor for metals right now.']:['<b>Dollar positioning easing.</b> Supportive for gold and silver, if price agrees.'];
+return`<section class="card hero" style="--m:#4f8cff"><div class="hd"><h2>US Dollar Index (DX)</h2><span class="badge ${a.lab[1]}">${a.lab[0]}</span></div>
+<div class="gwrap"><div class="gauge">${gauge(a.s)}<b>Signal score ${a.s>0?'+':''}${a.s}</b></div><div class="stats"><div class="s"><b>${sg(a.sp[a.L])}</b><span>Spec net</span></div><div class="s"><b>${a.pp[a.L].toFixed(1)}%</b><span>Net / open interest</span></div><div class="s"><b class="${a.tot>=0?'up':'dn'}">${a.tot>=0?'+':''}${a.tot.toFixed(1)} pts</b><span>${a.L}-week change</span></div><div class="s"><b class="${a.wk>=0?'up':'dn'}">${a.wk>=0?'+':''}${a.wk.toFixed(1)} pts</b><span>Last week</span></div></div></div>
+<h3>Speculator net, by week</h3>${spark(ws,a.sp,'u')}<h3>What it means for metals</h3><div class="act"><ul>${act.map(x=>`<li>${x}</li>`).join('')}</ul></div>${pv}<h3>Why</h3><ul class="why">${a.why.map(x=>`<li>${x}</li>`).join('')}</ul>
+<p class="note">ICE US Dollar Index futures, legacy report (non-commercial vs commercial). Different trader groups from the metals, so compare direction, not size.</p></section>`}
+function cross(g,s,u){const ag=analyse(g),as=analyse(s),au=analyseU(u),ms=(ag.s+as.s)/2,ub=au.s>=1?1:au.s<=-1?-1:0;let t;
+if(ub>0&&ms<0)t='Dollar positioning is leaning stronger while funds cut gold and silver. The two agree: <b>the bearish metals read has cross-asset support.</b>';
+else if(ub<0&&ms<0)t='Funds are cutting metals even though dollar positioning is easing. <b>The sell-off is not backed by the dollar</b>: watch for a metals reversal if dollar weakness shows up in price.';
+else if(ub>0&&ms>0)t='Funds are adding metals while dollar positioning strengthens. <b>Divergence:</b> the dollar is a headwind to that buying.';
+else if(ub<0&&ms>0)t='Dollar positioning is easing while funds add metals. <b>Both point the same way (supportive for metals).</b>';
+else t='No clear cross-asset signal between dollar positioning and metals.';
+return`<section class="card full"><div class="hd"><h2>Dollar vs Metals</h2></div><div class="act" style="--m:#4f8cff;margin-top:10px">${t}</div></section>`}
+function pxPanel(ws){const P=getP();return`<section class="card"><div class="hd"><h2>Prices in US dollars</h2></div><p class="note">Enter each Tuesday close (the day the COT positions are measured) from your chart. Prices unlock the price checks on each card above, and the gold/silver ratio.</p><div class="tw"><table><tr><th>COT week</th><th>XAU/USD</th><th>XAG/USD</th><th>DXY</th><th>Gold/Silver</th></tr>`+ws.map(w=>{const p=P[w.d]||{},r=parseFloat(p.xau)>0&&parseFloat(p.xag)>0?(p.xau/p.xag).toFixed(1):'-';return`<tr><td>${w.d}</td>${['xau','xag','dxy'].map(k=>`<td><input type="number" step="any" inputmode="decimal" data-d="${w.d}" data-k="${k}" value="${p[k]||''}"></td>`).join('')}<td>${r}</td></tr>`}).join('')+`</table></div></section>`}
+function render(){const d=data(),u=uData(),L=d.gold[d.gold.length-1].d;
+document.getElementById('asof').innerHTML=`<i></i>Positions as of ${L} (Tue) · ${d.gold.length} weeks loaded`;
+document.getElementById('cols').innerHTML=card('gold',d.gold,'g')+card('silver',d.silver,'s');
+document.getElementById('cmp').innerHTML=cmp(d.gold,d.silver);
+document.getElementById('usd').innerHTML=cardU(u)+cross(d.gold,d.silver,u);
+document.getElementById('px').innerHTML=pxPanel(d.gold)}
+document.getElementById('px').addEventListener('change',e=>{const t=e.target;if(!t.dataset||!t.dataset.d)return;const P=getP();P[t.dataset.d]=P[t.dataset.d]||{};P[t.dataset.d][t.dataset.k]=t.value;try{localStorage.setItem(PK,JSON.stringify(P))}catch(_){}render()});
+document.getElementById('add').onclick=()=>{const p=parse(document.getElementById('paste').value),us=userData(),msg=document.getElementById('msg');let n=0;
+for(const m of['gold','silver'])for(const w of p[m]){us[m]=(us[m]||[]).filter(x=>x.d!==w.d);us[m].push(w);n++}
+if(p.usd.length){let u=[];try{u=JSON.parse(localStorage.getItem(UK))||[]}catch(e){}p.usd.forEach(w=>{u=u.filter(x=>x.d!==w.d);u.push(w);n++});try{localStorage.setItem(UK,JSON.stringify(u))}catch(e){}}
+if(!n){msg.textContent='Nothing recognised. Paste the metals report (GOLD/SILVER) and/or the ICE US legacy futures-only report (USD INDEX).';return}
+saveUser(us);msg.textContent=`Added ${n} market row(s).`;document.getElementById('paste').value='';render()};
+document.getElementById('reset').onclick=()=>{try{localStorage.removeItem(SK);localStorage.removeItem(UK)}catch(e){}document.getElementById('msg').textContent='Reset to built-in data (your typed prices are kept).';render()};
+render();
+</script>
+</body>
+</html>
